@@ -1,2 +1,2 @@
-# CleanCode
-Clean Code 책을 읽고 개인적으로 학습한 내용에 대해서 정리하는 Repository입니다.
+# Clean_Code_Book
+Clean Code 책을 읽고 이해한 내용 및 개인적인 생각에 대해서 정리하는 Repository입니다.
