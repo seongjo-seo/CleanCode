@@ -215,7 +215,69 @@ SetupTeardownIncluder.render(pageData)는 이해하기 아주 쉬운데 이 의�
 이벤트 함수는 조심해서 사용해야 한다. 이벤트 함수는 이름과 문맥을 주의해서 선택해야 한다.<br/>
 
 
+- 이항 함수<br/>
+프로그램을 짜다보면 불가피한 경우로 이항 함수를 사용하는 것이 아니라면 가능하면 단항 함수를 바꾸도록 애써야 한다.<br/>
+
+- 삼항 인수<br/>
+삼항 함수는 이항 함수보다 더 많은 순서, 주춤, 무시로 야기되는 문제가 두 배 이상 늘어난다.<br/>
+삼항 함수는 함수를 볼 때마다 매번 주춤하게 만들 수 있다.<br/>
+
+- 동사나 키워드<br/>
+인수의 순서와 의도를 제대로 표현하기 위해서는 '동사/명사' 순서를 이루는 것이 좋다.<br/>
 
 
+### 명령과 조회를 분리하라!
+함수는 가능하면 다음의 기능을 하나씩 하는 것을 권한다.<br/>
+- 객체 상태를 변경한다.<br/>
+- 객체 정보를 반환한다.<br/>
 
 
+### 오류 코드보다 예외를 사용하라!
+오류코드를 코드에 그대로 작성하는 것이 아닌 try/catch 예외 코드를 작성하여 분리하는 것을 권장한다.<br/>
+예외를 별도로 두는 것을 권장 하지만 Try/Catch문도 가능하면 블록을 별도 함수로 뽑아내서 사용하는 것을 지향한다.<br/>
+
+예시를 들면 다음의 코드와 같다.
+``` java
+public void delete(Page page){
+  try{
+    deletePageAndAllReferences(page);
+  }
+  catch (Exception e){
+    logError(e);
+  }
+}
+private void deletePageAndAllReferences(Page page) throws Exception {
+  deletePage(page);
+  registry.deleteReference(page.name);
+  configKeys.deleteKey(page.name.makeKey());
+}
+
+private void logError(Exception e) {
+  logger.log(e.getMessage());
+} 
+```
+
+
+- 오류 처리도 한 가지 작업이다.<br/>
+클린 코드를 작성하는데 있어서 함수는 '한 가지'작업을 권장하는데 오류 처리도 결국 한 가지 작업만 일어날 수 있도록 요구하는 코드이다.<br/><br/>
+
+- 반복하지 마라!
+객체지향 프로그래밍은 코드를 부모 클래스로 몰아 중복을 없애는 구조로 사용된다.<br/>
+구조적 프로그래밍, AOP(Aspect Oriented Programming), COP(Component Oriented Programming) 모두 중복을 제거하기 위한 전략이다.<br/>
+지금까지 일어난 혁신은 소스 코드에서 중복을 제거하려는 지속적인 노력에서 발생됐다.<br/><br/><br/>
+
+- 구조적 프로그래밍
+에츠허르 데이크스트라(Edsger Dijkstra)의 구조적 프로그래밍 원칙을 얘기한다.<br/>
+모든 함수와 함수 내 모든 블록에 입구와 출구가 하나만 존재해야 한다.<br/>
+다시 의도를 정리하면 반복문(loop) 안에서 break나 continue를 사용해서 안 되며, goto는 절대로 사용하면 안 된다.<br/><br/><br/>
+
+- 구조적 프로그래밍도 모순이 존재한다.
+규모가 작은 경우에는 return, break, continue를 여러 차례 사용해도 괜찮다. 하지만 큰 규모를 갖는 경우는 피해야 한다.<br/>
+규모가 큰 경우에는 goto 문이 의미가 있지만 작은 함쉥서는 피해야 한다.<br/><br/>
+
+- 함수를 어떻게 짜는 것인가?
+코드를 모두 만든 후 다듬고, 이름을 바꾸고, 중복을 제거하며, 메서드를 줄이고 순서를 바꾸는 등 다양한 단계를 걸쳐 단위 테스트를 통과시키면서 좋은 함수를 만들어낸다.<br/>
+
+
+### 결론
+함수가 분명하고 정확한 언어로 깔끔하게 같이 맞아떨어져야 더 쉽게 풀어갈 수 있다.
