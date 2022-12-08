@@ -67,14 +67,52 @@ A 함수는 호출하는 B 함수는 호출되는 종속된 함수의 형태라�
 
 
 - 들여쓰기<br/>
-
+범위(scope)로 이뤄진 계층을 표현하기 위해 코드를 들여쓴다.<br/>
+프로그래밍에서는 왼쪽으로 들여쓰기를 맞춰 코드가 속하는 범위를 시각적으로 표현한다.<br/>
+들여쓰기를 올바르게 했을 때. 변수, 생성자 함수, 접근자 함수, 메서드가 금방 보이게 된다.<br/>
 
 
 - 팀 규칙<br/>
-
+팀 규칙을 통해서 소프트웨어가 일관적인 스타일을 보일 수 있도록 지향한다.<br/>
+좋은 소프트웨어 시스템은 읽기 쉬운 문서로 이뤄진다는 사실을 기억해야 한다.<br/>
+한 소스 파일에서 봤던 형식이 다른 소스 파일에도 재사용 가능할 수 있을 정도로 신뢰가 가능해야 하며, 온갖 스타일을 뒤섞어 소스 코드를 필요 이상으로 복잡하게 만드는 실수를 지양해야 한다.<br/>
 
 
 - 밥 아저씨의 형식 규칙<br/>
-
+다음과 같은 코드가 최고의 구현 표준 문서가 되는 예시이다.<br/>
+```java
+public class CodeAnlyzer implements JavaFileAnalysis{
+  private int lineCount;
+  private int maxLineWidth;
+  private int widestLineNumber;
+  private LineWidthHistogram LineWidthHistogram;
+  private int totalChars;
+  
+  public CodeAnalyzer(){
+    lineWidthHistogram = new LinewWidthHistogram();
+  }
+  
+  public static List<File> findJavaFiles(File parentDirectory) {
+    List<File> files = new ArrayList<File>();
+    findJavaFiles(parentDirectory, files);
+    return files;
+  }
+  
+  private static void findJavaFiles(File parentDirectory, List<File> files) {
+    for (File file : parentDirectory.listFiles()){
+      if (file.getName().endsWith(".java"))
+        files.add(file);
+      else if (file.isDirectory())
+        findJavaFiles(file, files);
+      }
+  }
+  
+  public void analyzeFile(File javaFile) throws Exception {
+    BufferedReader br = new BufferedReader(new FileReader(javaFile));
+    String line;
+    while ((line = br.readLine()) != null)
+      measureLine(line);
+    }
+```
 
 
