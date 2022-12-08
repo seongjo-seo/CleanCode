@@ -8,6 +8,7 @@ Clean Code 책을 읽고 이해한 내용 및 개인적인 생각에 대해서 �
 - [3장](https://github.com/seongjo-seo/Clean_Code_Book/blob/main/3%EC%9E%A5%20%ED%95%A8%EC%88%98/README.md)<br/>
 - [4장](https://github.com/seongjo-seo/CleanCodeBook/blob/main/4%EC%9E%A5%20%EC%A3%BC%EC%84%9D/README.md)<br/>
 - [5장](https://github.com/seongjo-seo/CleanCodeBook/tree/main/5%EC%9E%A5%20%ED%98%95%EC%8B%9D%20%EB%A7%9E%EC%B6%94%EA%B8%B0)<br/>
+- [6장](https://github.com/seongjo-seo/CleanCodeBook/tree/main/6%EC%9E%A5%20%EA%B0%9D%EC%B2%B4%EC%99%80%20%EC%9E%90%EB%A3%8C%20%EA%B5%AC%EC%A1%B0)<br/>
 
 
 ### ✍ 후기 <br/>
