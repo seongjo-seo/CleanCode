@@ -112,7 +112,37 @@ public class CodeAnlyzer implements JavaFileAnalysis{
     String line;
     while ((line = br.readLine()) != null)
       measureLine(line);
+  }
+  
+  private void measureLine(String line){
+    lineCount++;
+    int lineSize = line.length();
+    totalChars += lineSize;
+    lineWidthHistogram.addLine(lineSize, lineCount);
+    recordWidestLine(lineSize);
+  }
+  
+  private void recordWidesLine(int lineSize) {
+    if (lineSize > maxLineWidth){
+      maxLineWidth = lineSize;
+      widestLineNumber = lineCount;
     }
+  }
+  
+  public int getLineCount(){
+    return lineCount;
+  }
+  
+  public int getMaxLineWidth() {
+    return maxLineWidth;
+  }
+  
+  public int getWidestLineNumber() {
+    return widestLineNumber;
+  }
+  
+  public LineWidthHistogram getLineWidthHistogram() {
+    return lineWidthHistogram;
+  }
+    
 ```
-
-
